@@ -129,23 +129,6 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @-webkit-keyframes moveclouds {
 	0% {margin-left: 1200px;}
 	100% {margin-left: -1200px;}
@@ -157,4 +140,41 @@ body {
 @-o-keyframes moveclouds {
 	0% {margin-left: 1200px;}
 	100% {margin-left: -1200px;}
+}
+
+
+/*End of cloud function*/
+
+/*Styling begins*/
+
+
+
+
+
+h1 {
+    
+   font-family: 'Oswald', sans-serif;
+ text-align: center;
+    
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+#forms {
+      margin-left: 850px;
+      font-family: 'Oswald', sans-serif;
+    
+}
+
+
+
+
+#accordion {
+    margin-left: 450px;
+    width: 300px;
+    
+    
 }

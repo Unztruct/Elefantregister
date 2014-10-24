@@ -32,6 +32,15 @@ if (empty($dbh)) {
         $stmt->execute();
     }
 
+    
+    if (isset($_GET["tabort"]) and isset($_GET["namn"])) {
+        $elfnt = $_GET["namn"];
+        $sql = 'DELETE FROM `elefanter` WHERE namn="' . $elfnt . '"';
+         $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        
+        
+    }
 
 
 
@@ -48,21 +57,42 @@ if (empty($dbh)) {
 
 <html>
     <head>
-
+ <link href="Bootstrap/bootstrap.min.css" rel="stylesheet">
         <link href="css.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
         <meta charset="UTF-8">
+        <link href="Bootstrap/bootstrap.min.css" rel="stylesheet">
+        <script src="Bootstrap/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <title></title>
     </head>
     <body>
 
+        <div id="wrapper">
+  
 
+        <div  id="clouds">
+             <h1 class="center-block"  >Elefant-försäljning-och-handelssida</h1>
+             <div id="forms">
+            <form>
+            Elefantnamn: <input type="text" name="namn"><br>
+            Har betar?: <input type="text" name="betar"><br><br>
+            <input type="submit" value="Lägg till" name="add">
+            <br>
+</div>
+<!--            <input type="submit" value="Ta bort" name="tabort">-->
 
+        </form>
+            
+          
+            
+             
+             
+             
+             
+             <div class=" x1">
 
-        <div id="clouds">
-            <h1>Elefant-försäljning-och-handelssida</h1>
-            <div class="cloud x1">
-
-
+                <img src="elefanten.png" alt="123">
 
             </div>
             <div class="cloud x2">
@@ -87,21 +117,30 @@ if (empty($dbh)) {
 
             </div>
         </div>
+            
 
-
-        <form>
-            Elefantnamn: <input type="text" name="namn"><br>
-            Har betar?: <input type="text" name="betar">
-            <input type="submit" value="Lägg till" name="add">
-            <br>
-
-            <input type="submit" value="Ta bort">
-
-        </form>
+          
+        
 
         <br>
-
-<?php
+        
+        <!--Start of collapse-->
+        <div class="container">
+        <div id="row" >
+                
+                <div class="panel-group"   id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            <h2 style="text-align: center;">Elefantlista</h2>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+          
+              <?php
 foreach ($elefantnamn as $elefant) {
 
 
@@ -129,7 +168,31 @@ foreach ($elefantnamn as $elefant) {
     echo"<br>";
 }
 ?>
+          
+        
+          
+       
 
+      </div>
+    </div>
+  </div>
+</div>
+           
+  </div>
+            <!--End of accordion-->
+            
+            
+</div>
+           
+ 
+        
+        <form>
+            Ta bort elefant: <input type="text" name="namn"><br>
+            <input type="submit" value="Ta bort" name="tabort">
+            
+            
+        </form>
 
+</div>
     </body>
 </html>
