@@ -9,7 +9,6 @@ define("DB_NAME", "elefanter");
 $dbh = new PDO('mysql:dbname=' . DB_NAME . ';host=' . DB_SERVER . ';charset=utf8', DB_USER, DB_PASSWORD);
 
 
-
 if (empty($dbh)) {
 
     echo "Elefant-register tomt";
@@ -20,12 +19,14 @@ if (empty($dbh)) {
 
 
 
-    if (isset($_GET["namn"])) {
-        $name = $_GET["namn"];
-        $betar = $_GET["betar"];
+    
+    if (isset($_POST["betar"]) and isset($_POST["namn"])) {
+        //var_dump($_POST);
+        $name = $_POST["namn"];
+        $betar = $_POST["betar"];
     }
 
-    if (isset($_GET['add'])) {
+    if (isset($_POST['add'])) {
 
         $sql = "INSERT INTO elefanter(id,namn,betar) VALUES('','$name','$betar')";
         $stmt = $dbh->prepare($sql);
@@ -33,9 +34,9 @@ if (empty($dbh)) {
     }
 
     
-    if (isset($_GET["tabort"]) and isset($_GET["namn"])) {
-        $elfnt = $_GET["namn"];
-        $sql = 'DELETE FROM `elefanter` WHERE namn="' . $elfnt . '"';
+    if (isset($_POST["tabort"]) and isset($_POST["id"])) {
+        $id = $_POST["id"];
+        $sql = 'DELETE FROM `elefanter` WHERE id="' . $id . '"';
          $stmt = $dbh->prepare($sql);
         $stmt->execute();
         
@@ -74,15 +75,16 @@ if (empty($dbh)) {
         <div  id="clouds">
              <h1 class="center-block"  >Elefant-försäljning-och-handelssida</h1>
              <div id="forms">
-            <form>
+                 <form method="post">
             Elefantnamn: <input type="text" name="namn"><br>
             Har betar?: <input type="text" name="betar"><br><br>
             <input type="submit" value="Lägg till" name="add">
             <br>
+             </form>
 </div>
 <!--            <input type="submit" value="Ta bort" name="tabort">-->
 
-        </form>
+       
             
           
             
@@ -186,8 +188,8 @@ foreach ($elefantnamn as $elefant) {
            
  
         
-        <form>
-            Ta bort elefant: <input type="text" name="namn"><br>
+        <form method="post">
+            Ta bort elefantnummer: <input type="text" name="id"><br>
             <input type="submit" value="Ta bort" name="tabort">
             
             
@@ -196,3 +198,4 @@ foreach ($elefantnamn as $elefant) {
 </div>
     </body>
 </html>
+    
